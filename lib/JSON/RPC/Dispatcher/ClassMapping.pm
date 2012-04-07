@@ -2,7 +2,7 @@ package JSON::RPC::Dispatcher::ClassMapping;
 
 use strict;
 use warnings;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use JSON::RPC::Dispatcher;
 use Moose;
@@ -10,7 +10,8 @@ use namespace::autoclean;
 
 # XXX: Hack to relax "method" constraint of J::R::D::P so that it accepts "."
 {
-package JSON::RPC::Dispatcher::Procedure;
+package
+    JSON::RPC::Dispatcher::Procedure; # hide from PAUSE/indexers
 use Moose;
 
 __PACKAGE__->meta->make_mutable;
@@ -65,8 +66,7 @@ __END__
 
 =head1 NAME
 
-JSON::RPC::Dispatcher::ClassMapping - A wrapper to expose all public
-methods of classes as RPC methods
+JSON::RPC::Dispatcher::ClassMapping - Expose all public methods of classes as RPC methods
 
 =head1 SYNOPSIS
 
@@ -114,7 +114,7 @@ JSON::RPC::Dispatcher::ClassMapping will load them for you.
 
 Sherwin Daganato E<lt>sherwin@daganato.comE<gt>
 
-Based on code originally developed by Max Kanat-Alexander.
+Based on the dispatcher of L<RPC::Any::Server>  by Max Kanat-Alexander.
 
 =head1 LICENSE
 
